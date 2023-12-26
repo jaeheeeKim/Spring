@@ -5,14 +5,16 @@ import java.net.URLEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller // ctrl+shift+o 자동 import
 public class RegisterController {
-//	@RequestMapping("/register/add")
-//	@GetMapping("/register/add")
-//	public String register() {
-//		return "registerForm"; // WEB-INF/views/registerForm.jsp
-//	}
+	@RequestMapping(value="/register/add", method={RequestMethod.GET, RequestMethod.POST})
+//	@GetMapping("/register/add") servlet-context.xml에서 view-controller 작성 가능
+	public String register() {
+		return "registerForm"; // WEB-INF/views/registerForm.jsp
+	}
 	
 //	@RequestMapping(value="/register/save", method=RequestMethod.POST)
 	@PostMapping("/register/save") // sts 4.3버전부터 가능함 (따라서  ch2프로젝트 pom.xml에서 5.0.7로 수정후 ch2우클릭>Maven>update project해주기 
