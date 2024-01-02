@@ -7,18 +7,18 @@ import java.util.StringJoiner;
 public class MethodInfo {
 	public static void main(String[] args) throws Exception{
 		
-		// 1. YoilTeller Å¬·¡½ºÀÇ °´Ã¼¸¦ »ı¼º
+		// 1. YoilTeller í´ë˜ìŠ¤ì˜ ê°ì²´ë¥¼ ìƒì„±
 		Class clazz = Class.forName("com.jaehee.ch2.YoilTeller");
 		Object obj = clazz.newInstance();
 		
-		// 2. ¸ğµç ¸Ş¼Òµå Á¤º¸¸¦ °¡Á®¿Í¼­ ¹è¿­¿¡ ÀúÀå
+		// 2. ëª¨ë“  ë©”ì†Œë“œ ì •ë³´ë¥¼ ê°€ì ¸ì™€ì„œ ë°°ì—´ì— ì €ì¥
 		Method[] methodArr = clazz.getDeclaredMethods();
 		
 		for(Method m : methodArr) {
-			String name = m.getName(); // ¸Ş¼ÒµåÀÇ ÀÌ¸§
-			Parameter[] paramArr = m.getParameters(); // ¸Å°³º¯¼ö ¸ñ·Ï
+			String name = m.getName(); // ë©”ì†Œë“œì˜ ì´ë¦„
+			Parameter[] paramArr = m.getParameters(); // ë§¤ê°œë³€ìˆ˜ ëª©ë¡
 //			Class[] paramTypeArr = m.getParameterTypes();
-			Class returnType = m.getReturnType(); // ¹İÈ¯ Å¸ÀÔ
+			Class returnType = m.getReturnType(); // ë°˜í™˜ íƒ€ì…
 			
 			StringJoiner paramList = new StringJoiner(", ", "(", ")");
 			
@@ -34,6 +34,6 @@ public class MethodInfo {
 	} // main
 }
 
-// window-compiler-java 1.8¹öÀüºÎÅÍ ¸Ş¼ÒµåÆÄ¶ó¹ÌÅÍ(¸Å°³º¯¼ö) ÀÌ¸§ ¾ò¾î¿Í¼­ Àû¿ë°¡´É
-// ¹æ¹ı 1. Reflection API ¹æ¹ı 2. Class File
-//pom.xml¿¡¼­ ¼öÁ¤ÇØÁÙ °æ¿ì / Maven-update project ÇØÁà¾ßÇÔ
+// window-compiler-java 1.8ë²„ì „ë¶€í„° ë©”ì†Œë“œíŒŒë¼ë¯¸í„°(ë§¤ê°œë³€ìˆ˜) ì´ë¦„ ì–»ì–´ì™€ì„œ ì ìš©ê°€ëŠ¥
+// ë°©ë²• 1. Reflection API ë°©ë²• 2. Class File
+//pom.xmlì—ì„œ ìˆ˜ì •í•´ì¤„ ê²½ìš° / Maven-update project í•´ì¤˜ì•¼í•¨
