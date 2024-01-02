@@ -3,30 +3,30 @@ package com.jaehee.ch2;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-// 1. ¿ø°İ È£Ãâ °¡´ÉÇÑ ÇÁ·Î±×·¥À¸·Î µî·Ï
+// 1. ì›ê²© í˜¸ì¶œ ê°€ëŠ¥í•œ í”„ë¡œê·¸ë¨ìœ¼ë¡œ ë“±ë¡
 @Controller
 public class Hello {	
-	// 2. URL°ú ¸Ş¼ÒÆ® ¿¬°á
+	// 2. URLê³¼ ë©”ì†ŒíŠ¸ ì—°ê²°
 	@RequestMapping("/hello")
-	public void main() { // ÀÎ½ºÅÏ½º ¸Ş¼Òµå
+	public void main() { // ì¸ìŠ¤í„´ìŠ¤ ë©”ì†Œë“œ
 		System.out.println("Hello");
 	}
 	
 	int iv = 10;
 	static int cv = 20;
 	
-	// tomcatÀÌ °´Ã¼ »ı¼º ÈÄ ¸Ş¼Òµå È£Ãâ
-	public void main2() { // instance ¸Ş¼Òµå - iv, cv µÑ ´Ù »ç¿ë°¡´É
+	// tomcatì´ ê°ì²´ ìƒì„± í›„ ë©”ì†Œë“œ í˜¸ì¶œ
+	public void main2() { // instance ë©”ì†Œë“œ - iv, cv ë‘˜ ë‹¤ ì‚¬ìš©ê°€ëŠ¥
 		System.out.println(cv); // OK
 		System.out.println(iv); // OK
 	}
-	public static void main3() { // static ¸Ş¼Òµå - cv¸¸ »ç¿ë°¡´É
+	public static void main3() { // static ë©”ì†Œë“œ - cvë§Œ ì‚¬ìš©ê°€ëŠ¥
 		System.out.println(cv);	// OK
 //		System.out.println(iv); // ERROR
 	}
 	
-	/* ÁÖ¼®Ã³¸® ¾ÈÇÏ¸é 500 servlet ¿¡·¯³²
-	// Reflection API ¿¹Á¦ - Main.java
+	/* ì£¼ì„ì²˜ë¦¬ ì•ˆí•˜ë©´ 500 servlet ì—ëŸ¬ë‚¨
+	// Reflection API ì˜ˆì œ - Main.java
 	@RequestMapping("/hello")
 	private void main4() {
 		System.out.println("hello");

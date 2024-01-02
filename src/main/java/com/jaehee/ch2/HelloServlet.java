@@ -10,23 +10,23 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/hello")
 public class HelloServlet extends HttpServlet {
-	// ¸Ş´º¹ÙÀÇ source·Î ¿À¹ö¶óÀÌµåÇÔ
+	// ë©”ë‰´ë°”ì˜ sourceë¡œ ì˜¤ë²„ë¼ì´ë“œí•¨
 	@Override
 	public void init() throws ServletException {
-		// ¼­ºí¸´ÀÌ ÃÊ±âÈ­ µÉ ¶§ ÀÚµ¿ È£ÃâµÇ´Â ¸Ş¼Òµå
-		// 1. ¼­ºí¸´ÀÇ ÃÊ±âÈ­ ÀÛ¾÷ ´ã´ç
+		// ì„œë¸”ë¦¿ì´ ì´ˆê¸°í™” ë  ë•Œ ìë™ í˜¸ì¶œë˜ëŠ” ë©”ì†Œë“œ
+		// 1. ì„œë¸”ë¦¿ì˜ ì´ˆê¸°í™” ì‘ì—… ë‹´ë‹¹
 		System.out.println("[HelloServlet] init() is called.");
 	}
 
-	@Override // È£ÃâµÉ¶§¸¶´Ù ¹İº¹ÀûÀ¸·Î ¼öÇàµÊ
+	@Override // í˜¸ì¶œë ë•Œë§ˆë‹¤ ë°˜ë³µì ìœ¼ë¡œ ìˆ˜í–‰ë¨
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 1. ÀÔ·Â
-		// 2. Ã³¸®
-		// 3. Ãâ·Â
+		// 1. ì…ë ¥
+		// 2. ì²˜ë¦¬
+		// 3. ì¶œë ¥
 		System.out.println("[HelloServlet] service() is called.");
 	}
 
-	@Override // µŞ Á¤¸® ÀÛ¾÷ - ¼­ºí¸´ÀÌ Á¦°Å(unload)µÉ¶§, ´Ü ÇÑ¹ø¸¸ ¼öÇàµÊ
+	@Override // ë’· ì •ë¦¬ ì‘ì—… - ì„œë¸”ë¦¿ì´ ì œê±°(unload)ë ë•Œ, ë‹¨ í•œë²ˆë§Œ ìˆ˜í–‰ë¨
 	public void destroy() { 
 		System.out.println("[HelloServlet] destory() is called.");
 	}

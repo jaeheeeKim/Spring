@@ -15,7 +15,7 @@ public class YoilTellerMVC6 { // http://localhost/ch2/getYoilMVC?year=2021&month
 	
 	@ExceptionHandler(Exception.class)
 	public String catcher(Exception ex, BindingResult result) {
-		// BindingResult¸¦ ÅëÇØ error Á¤º¸¸¦ ÀÚ¼¼ÇÏ°Ô ¾Ë ¼ö ÀÖÀ½
+		// BindingResultë¥¼ í†µí•´ error ì •ë³´ë¥¼ ìì„¸í•˜ê²Œ ì•Œ ìˆ˜ ìˆìŒ
 		System.out.println("result="+result);
 		FieldError error = result.getFieldError();
 		
@@ -32,18 +32,18 @@ public class YoilTellerMVC6 { // http://localhost/ch2/getYoilMVC?year=2021&month
 	public String main(Mydate date, BindingResult result) throws IOException {
 		System.out.println("result="+result);
 		
-		// 1. À¯È¿¼º °Ë»ç
+		// 1. ìœ íš¨ì„± ê²€ì‚¬
 		if(!isvalid(date))
 			return "yoilError";
 		
-		// 2. ¿äÀÏ °è»ê
+		// 2. ìš”ì¼ ê³„ì‚°
 //		char yoil = getYoil(date);
 		
-		// 3. °è»êÇÑ °á°ú¸¦ model¿¡ ÀúÀå
+		// 3. ê³„ì‚°í•œ ê²°ê³¼ë¥¼ modelì— ì €ì¥
 //		model.addAttribute("myDate", date);
 //		model.addAttribute("yoil", yoil);
 		
-		return "yoil4"; // "WEB-INF/views/yoil.jsp" ÇØ´ç °æ·Î´Â appServletÀÇ servlet-context.xml ³»¿¡¼­ ¼öÁ¤°¡´É
+		return "yoil4"; // "WEB-INF/views/yoil.jsp" í•´ë‹¹ ê²½ë¡œëŠ” appServletì˜ servlet-context.xml ë‚´ì—ì„œ ìˆ˜ì •ê°€ëŠ¥
 	}
 
 	private boolean isvalid(Mydate date) {
@@ -52,7 +52,7 @@ public class YoilTellerMVC6 { // http://localhost/ch2/getYoilMVC?year=2021&month
 
 	private boolean isvalid(int year, int month, int day) {
 		// TODO Auto-generated method stub
-		return true; //falseÀÏ °æ¿ì ErrorÆäÀÌÁö·Î °¨!
+		return true; //falseì¼ ê²½ìš° Errorí˜ì´ì§€ë¡œ ê°!
 	}
 
 	private @ModelAttribute("yoil") char getYoil(Mydate date) {
@@ -63,8 +63,8 @@ public class YoilTellerMVC6 { // http://localhost/ch2/getYoilMVC?year=2021&month
 		Calendar cal = Calendar.getInstance();
 		cal.set(year, month-1, day-1);
 		
-		int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK); // 1:ÀÏ¿äÀÏ, 2:¿ù¿äÀÏ, 3:È­¿äÀÏ...
-		return "ÀÏ¿ùÈ­¼ö¸ñ±İÅä".charAt(dayOfWeek);
+		int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK); // 1:ì¼ìš”ì¼, 2:ì›”ìš”ì¼, 3:í™”ìš”ì¼...
+		return "ì¼ì›”í™”ìˆ˜ëª©ê¸ˆí† ".charAt(dayOfWeek);
 	}
 
 }

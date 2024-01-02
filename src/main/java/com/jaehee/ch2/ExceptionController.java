@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @Controller
 public class ExceptionController {
 	
-	// º°µµÀÇ ¿¹¿ÜÃ³¸® ¸Þ¼ÒµåÀÌ¸ç, ÇØ´ç ÄÁÆ®·Ñ·¯ ³»¿¡¼­¸¸ ¾µ ¼ö ÀÖÀ½ (try-catch ¿ªÇÒÀ» ÇØÁÜ!)
-	// ±×·¡¼­ º°µµÀÇ Å¬·¡½º¿¡ @ControllerAdvice¸¦ ¾²¸é ¸ðµç ÄÁÆ®·Ñ·¯¿¡¼­ ¹ß»ýÇÏ´Â ¿¹¿Ü¸¦ ´Ù Ã³¸®ÇØÁÜ = GlobalCatcher
-	// ÇØ´ç ÄÁÆ®·Ñ·¯´Â @GlobalCatcher ¸Þ¼Òµå°¡ ¾Æ´Ñ °¡Àå °¡±î¿î ¾Æ·¡ ¿¹¿ÜÃ³¸® catcher¸Þ¼Òµå°¡ ½ÇÇàµÊ!!!
+	// ë³„ë„ì˜ ì˜ˆì™¸ì²˜ë¦¬ ë©”ì†Œë“œì´ë©°, í•´ë‹¹ ì»¨íŠ¸ë¡¤ëŸ¬ ë‚´ì—ì„œë§Œ ì“¸ ìˆ˜ ìžˆìŒ (try-catch ì—­í• ì„ í•´ì¤Œ!)
+	// ê·¸ëž˜ì„œ ë³„ë„ì˜ í´ëž˜ìŠ¤ì— @ControllerAdviceë¥¼ ì“°ë©´ ëª¨ë“  ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ ë°œìƒí•˜ëŠ” ì˜ˆì™¸ë¥¼ ë‹¤ ì²˜ë¦¬í•´ì¤Œ = GlobalCatcher
+	// í•´ë‹¹ ì»¨íŠ¸ë¡¤ëŸ¬ëŠ” @GlobalCatcher ë©”ì†Œë“œê°€ ì•„ë‹Œ ê°€ìž¥ ê°€ê¹Œìš´ ì•„ëž˜ ì˜ˆì™¸ì²˜ë¦¬ catcherë©”ì†Œë“œê°€ ì‹¤í–‰ë¨!!!
 	@ExceptionHandler(Exception.class)
-	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR) // 200 -> 500 »óÅÂÄÚµå º¯°æ
-	public String catcher(Exception ex, Model m) { // ¹ß»ýÇÑ ¿¹¿Ü¸¦ view·Î º¸³»ÁÖ·Á¸é model°´Ã¼ ÇÊ¿äÇÔ
-		System.out.println("catcher() in ExceptionController"); // ¾îµð¼­ ¿¹¿ÜÃ³¸®ÇØÁÖ´ÂÁö È®ÀÎ~
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR) // 200 -> 500 ìƒíƒœì½”ë“œ ë³€ê²½
+	public String catcher(Exception ex, Model m) { // ë°œìƒí•œ ì˜ˆì™¸ë¥¼ viewë¡œ ë³´ë‚´ì£¼ë ¤ë©´ modelê°ì²´ í•„ìš”í•¨
+		System.out.println("catcher() in ExceptionController"); // ì–´ë””ì„œ ì˜ˆì™¸ì²˜ë¦¬í•´ì£¼ëŠ”ì§€ í™•ì¸~
 		
-		// JSP¿¡¼­ <%@ page isErrorPage="true"/> Àû¾îÁÖ¸é ex ´ã¾Æ¼­ Àü´ÞÇÒ ÇÊ¿ä¾øÀ½! »ý·« °¡´ÉÇÔ!
-//		m.addAttribute("ex", ex); // ÀÚµ¿À¸·Î exÁ¤º¸¸¦ m¿¡ ´ã¾Æ¼­ view¿¡ Àü´ÞÇÔ
+		// JSPì—ì„œ <%@ page isErrorPage="true"/> ì ì–´ì£¼ë©´ ex ë‹´ì•„ì„œ ì „ë‹¬í•  í•„ìš”ì—†ìŒ! ìƒëžµ ê°€ëŠ¥í•¨!
+//		m.addAttribute("ex", ex); // ìžë™ìœ¼ë¡œ exì •ë³´ë¥¼ mì— ë‹´ì•„ì„œ viewì— ì „ë‹¬í•¨
 		return "error";
 	}
 	@ExceptionHandler({NullPointerException.class, FileNotFoundException.class})
@@ -35,7 +35,7 @@ public class ExceptionController {
 	@RequestMapping("/ex")
 	public String main() throws Exception{
 //		try {
-			throw new Exception("¿¹¿Ü°¡ ¹ß»ýÇß½À´Ï´Ù."); // ¿ìÅ¬¸¯ Surround with>Try/Catch Block
+			throw new Exception("ì˜ˆì™¸ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤."); // ìš°í´ë¦­ Surround with>Try/Catch Block
 //		} catch (Exception e) {
 //			return "error";
 //		}
@@ -44,13 +44,13 @@ public class ExceptionController {
 	@RequestMapping("/ex2")
 	public String main2() throws Exception{
 //		try {
-			throw new NullPointerException("¿¹¿Ü°¡ ¹ß»ýÇß½À´Ï´Ù."); // ¿ìÅ¬¸¯ Surround with>Try/Catch Block
+			throw new NullPointerException("ì˜ˆì™¸ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤."); // ìš°í´ë¦­ Surround with>Try/Catch Block
 //		} catch (Exception e) {
 //			return "error";
 //		}
 	}
 	@RequestMapping("/ex3")
-	public String main3() throws Exception{	// ¿¹¿ÜÃ³¸® ¸Þ¼Òµå ¾ø¾îµµ Á¶»óÀÎ ExceptionÀÌ Ã³¸®ÇØÁÜ!
-			throw new FileNotFoundException("¿¹¿Ü°¡ ¹ß»ýÇß½À´Ï´Ù."); // ¿ìÅ¬¸¯ Surround with>Try/Catch Block
+	public String main3() throws Exception{	// ì˜ˆì™¸ì²˜ë¦¬ ë©”ì†Œë“œ ì—†ì–´ë„ ì¡°ìƒì¸ Exceptionì´ ì²˜ë¦¬í•´ì¤Œ!
+			throw new FileNotFoundException("ì˜ˆì™¸ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤."); // ìš°í´ë¦­ Surround with>Try/Catch Block
 	}
 }

@@ -6,11 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-@ControllerAdvice("com.jaehee.ch2") // ÇØ´ç ÆĞÅ°Áö ³»¿¡¼­¸¸ @¾î³ëÅ×ÀÌ¼Ç Àû¿ëµÊ
+@ControllerAdvice("com.jaehee.ch2") // í•´ë‹¹ íŒ¨í‚¤ì§€ ë‚´ì—ì„œë§Œ @ì–´ë…¸í…Œì´ì…˜ ì ìš©ë¨
 public class GlobalCatcher {
 	@ExceptionHandler(Exception.class)
-	public String catcher(Exception ex, Model m) { // ¹ß»ıÇÑ ¿¹¿Ü¸¦ view·Î º¸³»ÁÖ·Á¸é model°´Ã¼ ÇÊ¿äÇÔ
-		m.addAttribute("ex", ex); // ÀÚµ¿À¸·Î exÁ¤º¸¸¦ m¿¡ ´ã¾Æ¼­ view¿¡ Àü´ŞÇÔ
+	public String catcher(Exception ex, Model m) { // ë°œìƒí•œ ì˜ˆì™¸ë¥¼ viewë¡œ ë³´ë‚´ì£¼ë ¤ë©´ modelê°ì²´ í•„ìš”í•¨
+		m.addAttribute("ex", ex); // ìë™ìœ¼ë¡œ exì •ë³´ë¥¼ mì— ë‹´ì•„ì„œ viewì— ì „ë‹¬í•¨
 		return "error";
 	}
 	@ExceptionHandler({NullPointerException.class, FileNotFoundException.class})

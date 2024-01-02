@@ -5,15 +5,15 @@ import java.lang.reflect.Method;
 public class PrivateMethodCall {
 	public static void main(String[] args) throws Exception {
 //		Hello hello = new Hello();
-//		hello.main4(); // privateÀÌ¶ó¼­ ¿ÜºÎ È£Ãâ ºÒ°¡
+//		hello.main4(); // privateì´ë¼ì„œ ì™¸ë¶€ í˜¸ì¶œ ë¶ˆê°€
 		
-		// Spring framework¿¡¼­ Reflection API¸¦ ¸¹ÀÌ »ç¿ë - Å¬·¡½º Á¤º¸¸¦ ¾ò°í ´Ù·ê ¼ö ÀÖ´Â °­·ÂÇÑ ±â´É Á¦°ø
-		// java.lang.reflectÆĞÅ°Áö¸¦ Á¦°ø
-		// HelloÅ¬·¡½ºÀÇ Class°´Ã¼(Å¬·¡½ºÀÇ Á¤º¸¸¦ ´ã°í ÀÖ´Â °´Ã¼)¸¦ ¾ò¾î¿Â´Ù.
+		// Spring frameworkì—ì„œ Reflection APIë¥¼ ë§ì´ ì‚¬ìš© - í´ë˜ìŠ¤ ì •ë³´ë¥¼ ì–»ê³  ë‹¤ë£° ìˆ˜ ìˆëŠ” ê°•ë ¥í•œ ê¸°ëŠ¥ ì œê³µ
+		// java.lang.reflectíŒ¨í‚¤ì§€ë¥¼ ì œê³µ
+		// Helloí´ë˜ìŠ¤ì˜ Classê°ì²´(í´ë˜ìŠ¤ì˜ ì •ë³´ë¥¼ ë‹´ê³  ìˆëŠ” ê°ì²´)ë¥¼ ì–»ì–´ì˜¨ë‹¤.
 		Class helloClass = Class.forName("com.jaehee.ch2.Hello");
 		Hello hello = (Hello)helloClass.newInstance();
 		Method main = helloClass.getDeclaredMethod("main");
-		main.setAccessible(true); // privateÀÎ main()À» È£Ãâ°¡´ÉÇÏ°ÔÇÔ
+		main.setAccessible(true); // privateì¸ main()ì„ í˜¸ì¶œê°€ëŠ¥í•˜ê²Œí•¨
 		
 		main.invoke(hello);
 	}

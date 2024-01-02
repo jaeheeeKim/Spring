@@ -15,7 +15,7 @@ import org.springframework.validation.support.BindingAwareModelMap;
 
 public class MethodCall3 {
 	public static void main(String[] args) throws Exception{
-		// 1. ¿äÃ»ÇÒ ¶§ Á¦°øµÈ °ª - request.getParameterMap();
+		// 1. ìš”ì²­í•  ë•Œ ì œê³µëœ ê°’ - request.getParameterMap();
 		Map map = new HashMap();
 		map.put("year", "2021");
 		map.put("month", "10");
@@ -28,43 +28,43 @@ public class MethodCall3 {
 		// YoilTellerMVC.main(int year, int month, int day, Model model)
 		Method main = clazz.getDeclaredMethod("main", int.class, int.class, int.class, Model.class);
 				
-		Parameter[] paramArr = main.getParameters(); // main¸Ş¼ÒµåÀÇ ¸Å°³º¯¼ö ¸ñ·ÏÀ» °¡Á®¿Â´Ù.
-		Object[] argArr = new Object[main.getParameterCount()]; // ¸Å°³º¯¼ö °³¼ö¿Í °°Àº ±æÀÌÀÇ Object¹è¿­À» »ı¼º
-		// MethodCall2¿Í ´Ş¸® ÇÏµåÄÚµùÇÏÁö¾Ê°í µ¿ÀûÀ¸·Î ±¸¼ºÀ» ÇÔ / ¿äÃ»ÇÒ¶§ ³Ñ¾î¿Â °ªµéÀ» °¡Áö°í °´Ã¼¸¦ »ı¼ºÇÔ
+		Parameter[] paramArr = main.getParameters(); // mainë©”ì†Œë“œì˜ ë§¤ê°œë³€ìˆ˜ ëª©ë¡ì„ ê°€ì ¸ì˜¨ë‹¤.
+		Object[] argArr = new Object[main.getParameterCount()]; // ë§¤ê°œë³€ìˆ˜ ê°œìˆ˜ì™€ ê°™ì€ ê¸¸ì´ì˜ Objectë°°ì—´ì„ ìƒì„±
+		// MethodCall2ì™€ ë‹¬ë¦¬ í•˜ë“œì½”ë”©í•˜ì§€ì•Šê³  ë™ì ìœ¼ë¡œ êµ¬ì„±ì„ í•¨ / ìš”ì²­í• ë•Œ ë„˜ì–´ì˜¨ ê°’ë“¤ì„ ê°€ì§€ê³  ê°ì²´ë¥¼ ìƒì„±í•¨
 		
 		for(int i=0;i<paramArr.length;i++) {
 			String paramName = paramArr[i].getName();
 			Class  paramType = paramArr[i].getType();
-			Object value = map.get(paramName); // map¿¡¼­ ¸øÃ£À¸¸é value´Â null
+			Object value = map.get(paramName); // mapì—ì„œ ëª»ì°¾ìœ¼ë©´ valueëŠ” null
 
-			// paramTypeÁß¿¡ ModelÀÌ ÀÖÀ¸¸é, »ı¼º & ÀúÀå 
+			// paramTypeì¤‘ì— Modelì´ ìˆìœ¼ë©´, ìƒì„± & ì €ì¥ 
 			if(paramType==Model.class) {
 				argArr[i] = model = new BindingAwareModelMap(); 
-			} else if(value != null) {  // map¿¡ paramNameÀÌ ÀÖÀ¸¸é,
-				// value¿Í parameterÀÇ Å¸ÀÔÀ» ºñ±³ÇØ¼­, ´Ù¸£¸é º¯È¯ÇØ¼­ ÀúÀå  
-				argArr[i] = convertTo(value, paramType); // convertTo´Â StringÀ» int·Î º¯È¯ÇÏ´Â µîÀÇ ¸Ş¼ÒµåÀÓ	
+			} else if(value != null) {  // mapì— paramNameì´ ìˆìœ¼ë©´,
+				// valueì™€ parameterì˜ íƒ€ì…ì„ ë¹„êµí•´ì„œ, ë‹¤ë¥´ë©´ ë³€í™˜í•´ì„œ ì €ì¥  
+				argArr[i] = convertTo(value, paramType); // convertToëŠ” Stringì„ intë¡œ ë³€í™˜í•˜ëŠ” ë“±ì˜ ë©”ì†Œë“œì„	
 			} 
 		}
 		System.out.println("paramArr="+Arrays.toString(paramArr));
 		System.out.println("argArr="+Arrays.toString(argArr));
 		
 		
-		// ControllerÀÇ main()À» È£Ãâ - YoilTellerMVC.main(int year, int month, int day, Model model)
+		// Controllerì˜ main()ì„ í˜¸ì¶œ - YoilTellerMVC.main(int year, int month, int day, Model model)
 		String viewName = (String)main.invoke(obj, argArr); 	
 		System.out.println("viewName="+viewName);	
 		
-		// ModelÀÇ ³»¿ëÀ» Ãâ·Â 
+		// Modelì˜ ë‚´ìš©ì„ ì¶œë ¥ 
 		System.out.println("[after] model="+model);
 				
-		// ÅØ½ºÆ® ÆÄÀÏÀ» ÀÌ¿ëÇÑ rendering
+		// í…ìŠ¤íŠ¸ íŒŒì¼ì„ ì´ìš©í•œ rendering
 		render(model, viewName);			
 	} // main
 	
 	private static Object convertTo(Object value, Class type) {
-		if(type==null || value==null || type.isInstance(value)) // Å¸ÀÔÀÌ °°À¸¸é ±×´ë·Î ¹İÈ¯ 
+		if(type==null || value==null || type.isInstance(value)) // íƒ€ì…ì´ ê°™ìœ¼ë©´ ê·¸ëŒ€ë¡œ ë°˜í™˜ 
 			return value;
 
-		// Å¸ÀÔÀÌ ´Ù¸£¸é, º¯È¯ÇØ¼­ ¹İÈ¯
+		// íƒ€ì…ì´ ë‹¤ë¥´ë©´, ë³€í™˜í•´ì„œ ë°˜í™˜
 		if(String.class.isInstance(value) && type==int.class) { // String -> int
 			return Integer.valueOf((String)value);
 		} else if(String.class.isInstance(value) && type==double.class) { // String -> double
@@ -77,26 +77,26 @@ public class MethodCall3 {
 	private static void render(Model model, String viewName) throws IOException {
 		String result = "";
 		
-		// 1. ºäÀÇ ³»¿ëÀ» ÇÑÁÙ¾¿ ÀĞ¾î¼­ ÇÏ³ªÀÇ ¹®ÀÚ¿­·Î ¸¸µç´Ù.
+		// 1. ë·°ì˜ ë‚´ìš©ì„ í•œì¤„ì”© ì½ì–´ì„œ í•˜ë‚˜ì˜ ë¬¸ìì—´ë¡œ ë§Œë“ ë‹¤.
 		Scanner sc = new Scanner(new File("src/main/webapp/WEB-INF/views/"+viewName+".jsp"), "utf-8");
 		
 		while(sc.hasNextLine())
 			result += sc.nextLine()+ System.lineSeparator();
 		
-		// 2. modelÀ» mapÀ¸·Î º¯È¯ 
+		// 2. modelì„ mapìœ¼ë¡œ ë³€í™˜ 
 		Map map = model.asMap();
 		
-		// 3.key¸¦ ÇÏ³ª¾¿ ÀĞ¾î¼­ templateÀÇ ${key}¸¦ value¹Ù²Û´Ù.
+		// 3.keyë¥¼ í•˜ë‚˜ì”© ì½ì–´ì„œ templateì˜ ${key}ë¥¼ valueë°”ê¾¼ë‹¤.
 		Iterator it = map.keySet().iterator();
 		
 		while(it.hasNext()) {
 			String key = (String)it.next();
 
-			// 4. replace()·Î key¸¦ value Ä¡È¯ÇÑ´Ù.
+			// 4. replace()ë¡œ keyë¥¼ value ì¹˜í™˜í•œë‹¤.
 			result = result.replace("${"+key+"}", ""+map.get(key));
 		}
 		
-		// 5.·»´õ¸µ °á°ú¸¦ Ãâ·ÂÇÑ´Ù.
+		// 5.ë Œë”ë§ ê²°ê³¼ë¥¼ ì¶œë ¥í•œë‹¤.
 		System.out.println(result);
 	}
 }

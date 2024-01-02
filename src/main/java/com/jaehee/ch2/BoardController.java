@@ -13,15 +13,15 @@ public class BoardController {
 	@GetMapping("/list")
 	public String liSt(HttpServletRequest request) {	
 		if(!loginCheck(request))
-			return "redirect:/login/login?toURL="+request.getRequestURL();	// ·Î±×ÀÎÀ» ¾ÈÇßÀ¸¸é, ·Î±×ÀÎ È­¸éÀ¸·Î ÀÌµ¿
+			return "redirect:/login/login?toURL="+request.getRequestURL();	// ë¡œê·¸ì¸ì„ ì•ˆí–ˆìœ¼ë©´, ë¡œê·¸ì¸ í™”ë©´ìœ¼ë¡œ ì´ë™
 		
-		return "boardList";					// ·Î±×ÀÎÀ» ÇßÀ¸¸é, °Ô½ÃÆÇ È­¸éÀ¸·Î ÀÌµ¿
+		return "boardList";					// ë¡œê·¸ì¸ì„ í–ˆìœ¼ë©´, ê²Œì‹œíŒ í™”ë©´ìœ¼ë¡œ ì´ë™
 	}
 
 	private boolean loginCheck(HttpServletRequest request) {
-		// 1. ¼¼¼ÇÀ» ¾ò¾î¼­
+		// 1. ì„¸ì…˜ì„ ì–»ì–´ì„œ
 		HttpSession session = request.getSession();
-		// 2. ¼¼¼Ç¿¡ ID°¡ ÀÖ´ÂÁö È®ÀÎ
+		// 2. ì„¸ì…˜ì— IDê°€ ìˆëŠ”ì§€ í™•ì¸
 //		if(session.getAttribute("id")!=null)
 //			return true;
 //		else
